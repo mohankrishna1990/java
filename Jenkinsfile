@@ -15,7 +15,7 @@ agent any
                             def mavenImage = docker.image('openjdk:11')
                             mavenImage.inside() 
                             {
-                                sh "mvn clean verify sonar:sonar -Dsonar.projectKey=ffg"
+                                bat "mvn clean verify sonar:sonar -Dsonar.projectKey=ffg"
                             }
                         }
                     }
