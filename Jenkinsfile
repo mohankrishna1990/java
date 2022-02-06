@@ -3,18 +3,8 @@ node {
     git 'https://github.com/mohankrishna1990/java.git'
   }
   stage('SonarQube analysis') {
-    withSonarQubeEnv('SonarQube') {
-      bat 'mvn clean package sonar:sonar'
-    } // submitted SonarQube taskId is automatically attached to the pipeline context
-  }
-}
-  
-// No need to occupy a node
-stage("Quality Gate"){
-  timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-    if (qg.status != 'OK') {
-      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+    withSonarQubeEnv(credentialsId: 'a209187b11fc59837532190b85616a5b8dbe2f96', installationName: 'ffg') { // You can override the credential to be used
+      bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
     }
   }
 }
