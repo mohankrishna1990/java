@@ -8,10 +8,10 @@ agent any
                      url: 'https://github.com/mohankrishna1990/java.git'
                   }
                 }
-        	stage('SonarQube analysis'){
+        	stage('SonarQube'){
             	steps {
                     script{
-                        withSonarQubeEnv('SonarQube'){
+                        withSonarQubeEnv('SonarQube analysis'){
                             def mavenImage = docker.image('openjdk:11')
                             mavenImage.inside() 
                             {
