@@ -12,8 +12,8 @@ agent any
             	steps {
                     script{
                         withSonarQubeEnv('SonarQube analysis'){
-                            def mavenImage = docker.image('openjdk:11')
-                            mavenImage.inside() 
+                            //def mavenImage = docker.image('openjdk:11')
+                            //mavenImage.inside() 
                             {
                                 bat "mvn clean verify sonar:sonar" 
                                 bat "-Dsonar.projectKey=Java"
