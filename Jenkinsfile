@@ -14,14 +14,14 @@ agent any
                         withSonarQubeEnv('SonarQube analysis'){
                             //def mavenImage = docker.image('openjdk:11')
                             //mavenImage.inside() 
-                            {
+                            //{
                                 bat "mvn clean verify sonar:sonar" 
                                 bat "-Dsonar.projectKey=Java"
                                 bat "-Dsonar.host.url=http://localhost:9000"
                                 bat "-Dsonar.login=455cc11ed1ffab8979265ddf36ea31d35e395139"
                             }
                         }
-                    }
+                   // }
                     }
                   }
                 }
